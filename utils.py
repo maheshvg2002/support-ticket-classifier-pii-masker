@@ -2,8 +2,14 @@ import re
 import spacy
 
 # Load spaCy model for Named Entity Recognition (NER)
-nlp = spacy.load("en_core_web_sm")
 
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    from spacy.cli import download
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
+    
 def mask_pii(text: str) -> dict:
     """
     Detects and masks PII/PCI entities in the text without using LLMs.
