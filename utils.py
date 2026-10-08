@@ -1,7 +1,6 @@
 import re
 import spacy
 
-# Load spaCy model for Named Entity Recognition (NER)
 nlp = spacy.load("en_core_web_sm")
 
 def mask_pii(text: str) -> dict:
